@@ -1,6 +1,6 @@
 from datetime import datetime
-from typing import Optional
-from pydantic import BaseModel, EmailStr
+from typing import Optional, Annotated
+from pydantic import BaseModel, EmailStr, Field, conint
 
 from app.database import Base
 
@@ -46,3 +46,7 @@ class Token(BaseModel):
 
 class TokenData(BaseModel):
     id: Optional[int] = None
+
+class Vote(BaseModel):
+    post_id: int
+    dir: Annotated[int, Field(le=1)]
