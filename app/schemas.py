@@ -1,6 +1,6 @@
 from datetime import datetime
 from typing import Optional, Annotated
-from pydantic import BaseModel, EmailStr, Field, conint
+from pydantic import BaseModel, EmailStr, Field
 
 from app.database import Base
 
@@ -30,6 +30,12 @@ class Post(PostBase):
     class Config:
         orm_mode = True
 
+class PostOut(BaseModel):
+    Post: Post
+    votes: int
+
+    class Config:
+        orm_mode = True
 
 class UserCreate(BaseModel):
     email: EmailStr
